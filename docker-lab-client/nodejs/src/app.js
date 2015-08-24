@@ -1,5 +1,5 @@
 var express = require('express');
-var expressHbs = require('express3-handlebars');
+var expressHbs = require('express-handlebars');
 var http = require('http');
 
 // Constants
