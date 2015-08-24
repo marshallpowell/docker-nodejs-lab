@@ -7,7 +7,7 @@ RUN /usr/bin/dnf install -y npm
 RUN mkdir nodejs; cd nodejs; mkdir src
 
 # Bundle app source
-COPY ./nodejs/src/*.* nodejs/src/ 
+COPY ./nodejs/src nodejs/src/
 
 # Install app dependencies
 RUN cd nodejs/src; npm install

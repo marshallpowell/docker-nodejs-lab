@@ -7,10 +7,11 @@ var PORT = 8000;
 
 // Initialize Express
 var app = express();
-app.engine('hbs', expressHbs({extname:'hbs', defaultLayout:'main.hbs'}));
-app.set('view engine', 'hbs');
+
 app.configure(function() {
-    app.set('views', __dirname + '/views');
+    app.set('views', __dirname+'/views');
+    app.engine('hbs', expressHbs({extname:'hbs', defaultLayout:'main.hbs',layoutsDir: __dirname + '/views/layouts'}));
+    app.set('view engine', 'hbs');
 });
 
 /*
@@ -47,7 +48,7 @@ app.get("/helloWorld/", function (req, res) {
 app.get("/", function (req, res) {
 
         // HTTP GET request
-        console.log('Request made to /');
+        console.log('Request made to / views dir: ' + app.get('views'));
 
   var basketballPlayers = [
     {name: 'Lebron James', team: 'the Heat'},
@@ -85,7 +86,7 @@ app.get("/", function (req, res) {
   };
 
 
-        res.render('templateSamples', data);
+        res.render('template_samples', data);
 
 });
 
