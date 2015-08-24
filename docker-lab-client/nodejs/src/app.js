@@ -9,6 +9,9 @@ var PORT = 8000;
 var app = express();
 app.engine('hbs', expressHbs({extname:'hbs', defaultLayout:'main.hbs'}));
 app.set('view engine', 'hbs');
+app.configure(function() {
+    app.set('views', __dirname + '/views');
+});
 
 /*
 #These are example environment variables set by Docker at run time
