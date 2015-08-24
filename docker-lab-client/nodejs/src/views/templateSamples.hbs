@@ -1,0 +1,151 @@
+<h1>Some Handlebar Templating Examples</h1>
+
+<h4>Example: Loop<h4>
+ 
+ <p>
+ To display items in a loop, use handlebars's <code>&#123&#123;#each&#125;&#125;</code> helper.
+ This template is rendered with two arrays, one called <em>basketballPlayers</em> and one called <em>days</em>.
+ </p>
+  
+ <p>
+ The <em>days</em> array is just a list of strings, the day names. When you use <code>&#123&#123;#each&#125;&#125;</code>, you
+ can access the value of the current item in the array using <code>&#123&#123;this&#125;&#125;</code>.
+ </p>
+ 
+ <p>
+ To print each day of the week, then do this:
+ <code><pre>
+ &#123&#123;#each days&#125;&#125;
+ 
+ Day: &#123&#123;this&#125;&#125; &lt;br&gt;
+ 
+ &#123&#123;/each&#125;&#125;
+ </pre></code>
+ </p>
+ 
+ <p>
+ The result is this:<br>
+ {{#each days}}
+ Day: {{this}}<br>
+ {{/each}}
+ </p>
+ 
+  <p>
+ The <em>basketballPlayers</em> array is a list of <em>objects</em>, each of which has a <em>name</em> and <em>team</em> property.
+ 
+ Inside of your <code>&#123&#123;#each&#125;&#125;</code> block, you can access the properties using <code>&#123&#123;this&#125;&#125;</code> with a dot ('.')
+ and the property name. So to display all the players and their teams, do this:
+ 
+<code><pre>
+ &#123&#123;#each basketballPlayers&#125;&#125;
+ 
+ &#123&#123;this.name&#125;&#125; plays for &#123&#123;this.team&#125;&#125; &lt;br&gt;
+ 
+ &#123&#123;/each&#125;&#125;
+ </pre></code>
+ </p>
+ 
+ <p>
+ The result is this:<br>
+ {{#each basketballPlayers}}
+    <b>{{this.name}}</b> plays for <b>{{this.team}}</b><br>
+ {{/each}}
+ </p>
+
+ <h4>Example: Complex</h4>
+ 
+ <p>
+ The data that was passed to `res.render` is:
+ <code><pre>
+   var data = {
+    name: 'Gorilla',
+    address: {
+      streetName: 'Broadway',
+      streetNumber: '721',
+      floor: 4,
+      addressType: {
+        typeName: 'residential'
+      }
+    }
+  };
+</pre></code>
+ </p>
+ 
+ <p>
+ The template still has a <em>name</em> property, which is <b>{{person.name}}</b> (<code>&#123;&#123;person.name&#125;&#125;</code>).
+ </p>
+ 
+ <p>
+ The template also has an <em>address</em> property that itself has other properties (<em>streetName</em>, <em>streetNumber</em>, etc.).
+ If the template attempts to display the <em>address</em> property, though, the result is: <b>{{address}}</b> (<code>&#123;&#123;address&#125;&#125;</code>).
+ </p>
+ 
+ <p>
+ In order to display the inner parts of <em>address</em>, you can use a dot ('.') to access them.
+ To display the <em>streetname</em>, use: &#123;&#123;address.streetName&#125;&#125;, which prints: {{person.address.streetName}}.
+ </p>
+ 
+ <p>So, to print the entire address you'd do:<br>
+ &#123;&#123;person.addressstreetNumber&#125;&#125; &#123;&#123;person.addressstreetName&#125;&#125;, Floor &#123;&#123;person.addressfloor&#125;&#125; (Address Type: &#123;&#123;person.addressaddressType.typeName&#125;&#125;).
+<br>
+And the result would be:
+<b>{{person.addressstreetNumber}}</b> <b>{{person.addressstreetName}}</b>, Floor <b>{{person.addressfloor}}</b> (Address Type: <b>{{person.addressaddressType.typeName}}</b>).
+</p>
+
+<h4>Example: Logic</h4>
+ 
+ <p>
+ In Handlebars you can use 'if', 'else' and 'unless' helpers.
+ The 'if' helper will display whatever is inside it (and before the '/if' helper) if the variable is "truthy". Basically,
+ is it is not <code>false</code> or <code>undefined</code> or <code>0</code>.
+ </p>
+ 
+ <p>
+ Example: the value of <code>&#123;&#123;logic.upIsUpd&#125;&#125;</code> is: <b>{{logic.upIsUp}}</b>, so if I use it in an 'if' helper,
+ this gets displayed:
+ 
+ <code><pre> 
+ &#123;&#123;#if logic.upIsUp&#125;&#125;
+ 
+ Yes, up is up.
+ 
+&#123;&#123;/if&#125;&#125;
+</pre></code>
+<br>
+<br>
+The result:
+
+{{#if logic.upIsUp}}
+Yes, up is up.
+{{/if}}
+</p>
+
+<p>
+Similarly, you can use <code>&#123;&#123;else&#125;&#125;</code> inside an  &#123;&#123;#if&#125;&#125;, which does what you'd expect.
+The value of <code>&#123;&#123;logic.upIsDown&#125;&#125;</code> is: <b>{{logic.upIsDown}}</b> (false), so if I use it in an 'if' helper with an 'else', like so:
+
+ <code><pre> 
+ &#123;&#123;#if logic.upIsDown&#125;&#125;
+ 
+ Yes, up is the same as down.
+ 
+  &#123;&#123;else&#125;&#125;
+  
+  No, up is not the same down. Up is up.
+ 
+&#123;&#123;/if&#125;&#125;
+</pre></code>
+<Br>
+<br>
+The result:
+
+{{#if logic.upIsDown}}
+Yes, up is the same as down.
+{{else}}
+No, up is not the same down. Up is up.
+{{/if}}
+</p>
+
+<p>
+    These examples were referenced from: http://code.runnable.com/U07z_Y_j9rZk1tTx/handlebars-template-examples-with-express-4-for-node-js
+</p>
