@@ -16,8 +16,7 @@
 ### Clone this project 
 Navigate to the directory you will use for your project and run the below commands. If you are using the RH vagrant box, navigate to the /vagrant directory.
 
-* `git init`
-* `git remote add origin https://github.com/marshallpowell/docker-nodejs-lab.git`
+* `git clone https://github.com/marshallpowell/docker-nodejs-lab.git`
 
 ### Build the Docker image
 
