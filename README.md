@@ -82,5 +82,9 @@ Add a email validation to the userValidation class. Validate it works client sid
 ##### run a docker container with advanced options. -p specifies the public port which maps to the internal port. --link specifies it to link up with another container. --volume specifies a directory to mount on your local file system. The last arg is the tag for the container you want to run
 `docker run -d -p 8000:8000 --link myserver --volume /vagrant/docker-nodejs-lab/docker-lab-client/nodejs/src/:/src --name client vagrant/nodejs-client`
 
+##### open up a shell within a container
+docker exec -i -t <container name> bash
 
+##### show logs from a running container
+docker logs <container name>
 
