@@ -15,8 +15,8 @@ ENV NODE_PATH=/node_modules
 # Install app dependencies
 RUN npm install
 
-#Your node app is set to listen on 8000, so we tell docker to expose that port
-EXPOSE  8000
+#Your node app is set to listen on 8001, so we tell docker to expose that port
+EXPOSE  8001
 
 #Define the command to start your node application
 CMD ["node", "src/app.js"]
